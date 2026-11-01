@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Practice JSON document CRUD locally, or connect explicitly to your own protected MongoDB API."
+    />
+    <title>Document API Playground</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="badge">Subhash Dixit · Applied portfolio</div>
+      <h1>Document API Playground</h1>
+      <p>
+        Practice JSON document CRUD locally, or connect explicitly to your own
+        protected MongoDB API.
+      </p>
+      <a href="https://github.com/subhashdixit/document-api-playground"
+        >Source, concepts and operating guide ↗</a
+      >
+    </header>
+    <main>
+      <section>
+        <p>
+          <strong id="mode">Local demo store</strong> · Browser-only JSON
+          documents are not MongoDB. Server mode requires your own deployed
+          backend and access token; neither is embedded in this page.
+        </p>
+        <button id="demo">Load fictional documents</button
+        ><button id="export">Export local JSON backup</button
+        ><label
+          >Import local backup (1 MiB)<input
+            id="import"
+            type="file"
+            accept=".json"
+        /></label>
+        <details>
+          <summary>Connect your own MongoDB API</summary>
+          <p>
+            Enter the endpoint of a backend you control. The token is sent only
+            to that endpoint, is kept in tab memory and is not stored. These
+            owner-level CRUD credentials can edit/delete that configured
+            collection; use a dedicated demonstration collection.
+          </p>
+          <label
+            >Backend origin<input
+              id="endpoint"
+              placeholder="https://your-service.onrender.com" /></label
+          ><label
+            >Access token<input
+              id="token"
+              type="password"
+              autocomplete="off" /></label
+          ><button id="connect">Connect and list documents</button
+          ><button id="disconnect">Return to local mode</button>
+        </details>
+      </section>
+      <section>
+        <h2>1 · Create or edit JSON</h2>
+        <label
+          >Document object<textarea id="document">
+{"name":"Example Person","city":"Kolkata","course":"Python"}</textarea
+          ></label
+        ><button id="save">Create document</button
+        ><button id="cancel">Cancel edit</button>
+        <p>
+          No Mongo operators, dotted keys or prototype keys. Nested plain JSON
+          is supported.
+        </p>
+      </section>
+      <section>
+        <h2>2 · Inspect documents</h2>
+        <label
+          >Local text filter (does not send a server query)<input
+            id="filter"
+            maxlength="200"
+        /></label>
+        <div id="documents"></div>
+      </section>
+      <p id="status" role="status" aria-live="polite"></p>
+      <details>
+        <summary>How this works · scope and limitations</summary>
+        <p>
+          Local mode validates documents and saves a browser JSON collection.
+          Server mode uses a separate authenticated Flask/PyMongo backend with
+          fixed database/collection configuration. The backend receives no raw
+          Mongo query operators from the browser. Export local backups before
+          clearing browser data.
+        </p>
+      </details>
+    </main>
+    <footer>
+      <p>
+        GitHub Pages · HTML / JavaScript · Original project preserved in source.
+      </p>
+    </footer>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
