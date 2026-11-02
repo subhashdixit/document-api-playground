@@ -1,3 +1,5 @@
+# Historical prototype dependencies: preserved for reference.
+# Supported maintained-release installation and exact locks: DEPENDENCIES.md.
 fastapi==0.129.0
 motor==3.7.1
 pymongo[srv]==4.16.0
