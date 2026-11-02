@@ -99,6 +99,6 @@ Original mongodb_api source preserved. Maintained backend uses the official PyMo
 
 ## Practical limits
 
-Local storage is unencrypted and browser-specific. Server mode is optional and requires owner-controlled MongoDB URI/access token; it is not claimed live without those settings and a real CRUD verification. The public Pages app is usable locally without them. Up to 500 documents, 30,000 characters per document, depth10 and 1 MiB imports. No transactions across arbitrary collections, full Mongo query language, row-level users or durable cloud-store guarantee.
+Local storage is unencrypted and browser-specific. Server mode is optional and requires owner-controlled MongoDB URI/access token; it is not claimed live without those settings and a real CRUD verification. The public Pages app is usable locally without them. Up to 500 documents, 30,000 characters per document, depth10 and 16 MiB imports. No transactions across arbitrary collections, full Mongo query language, row-level users or durable cloud-store guarantee.
 
 The test suite checks calculation contracts and invalid inputs. It cannot establish that an input dataset is representative, that a heuristic is scientifically correct for every domain, or that a result is suitable for an automated consequential decision. Read the original source alongside the maintained browser implementation when comparing behavior.

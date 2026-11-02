@@ -41,3 +41,13 @@ test("endpoint permits HTTPS and localhost only without URL credentials", () => 
   ])
     assert.throws(() => endpointURL(u));
 });
+
+test("a substantial supported local collection round trips without dropping records", () => {
+  const rows = Array.from({ length: 500 }, (_, i) => ({
+    id: "record-" + i,
+    document: { description: "x".repeat(3000) },
+  }));
+  const text = JSON.stringify({ schema: 1, documents: validateRows(rows) });
+  assert.ok(text.length > 1024 * 1024);
+  assert.deepEqual(validateRows(JSON.parse(text).documents), rows);
+});
