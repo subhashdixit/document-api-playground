@@ -1,0 +1,8 @@
+# Historical prototype dependencies: preserved for reference.
+# Supported maintained-release installation and exact locks: DEPENDENCIES.md.
+fastapi==0.129.0
+motor==3.7.1
+pymongo[srv]==4.16.0
+python-dotenv==1.2.1
+uvicorn==0.41.0
+certifi==2026.1.4

@@ -105,3 +105,16 @@ Original mongodb_api source preserved. Maintained backend uses the official PyMo
 Local storage is unencrypted and browser-specific. Server mode is optional and requires owner-controlled MongoDB URI/access token; it is not claimed live without those settings and a real CRUD verification. The public Pages app is usable locally without them. Up to 500 documents, 30,000 characters per document, depth10 and 16 MiB imports. No transactions across arbitrary collections, full Mongo query language, row-level users or durable cloud-store guarantee.
 
 The test suite checks calculation contracts and invalid inputs. It cannot establish that an input dataset is representative, that a heuristic is scientifically correct for every domain, or that a result is suitable for an automated consequential decision. Read the original source alongside the maintained browser implementation when comparing behavior.
+
+## Local dependency installation
+
+`requirements.txt` lists the complete supported production environment with exact `package==version` pins, including transitive dependencies. Use Python 3.11.17 in a fresh virtual environment:
+
+```bash
+python3.11 -m venv .venv
+# Activate: source .venv/bin/activate (Windows: .venv\Scripts\activate)
+python -m pip install -r requirements.txt
+python -m pip check
+```
+
+For hash-verified installation and separate development environments, follow [DEPENDENCIES.md](DEPENDENCIES.md). Original prototype requirements are preserved at `archive/prototype-requirements.in` where present; they are not the supported install command.

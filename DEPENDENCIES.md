@@ -218,3 +218,7 @@ External news/search APIs supply changing data independently of local package ve
 ## Integration-test database
 
 MongoDB CI uses `mongo:8.0@sha256:b9924c330a8bbc5800fe9c69f04a84e221eca7b28fd049a0354147d9908fa142`. The digest pins the exact image behind the version tag. This is an isolated test service; it is not a configured production database.
+
+## Standard requirements.txt entry point
+
+The root `requirements.txt` explicitly lists every distribution in the production lock with exact versions and platform markers. `python -m pip install -r requirements.txt` installs that environment. The hash-locked files remain authoritative for artifact-integrity verification; CI verifies requirements inputs against those locked versions. Original prototype inputs are preserved as `archive/prototype-requirements.in` where present.
