@@ -69,3 +69,11 @@ export function endpointURL(text) {
     throw Error("Use an HTTPS origin (or localhost for development).");
   return u.origin;
 }
+
+export function importBackup(text) {
+  if (typeof text !== "string" || text.length > 16 * 1024 * 1024)
+    throw Error("Use a backup up to 16 MiB.");
+  const value = JSON.parse(text);
+  if (!value || value.schema !== 1) throw Error("Unsupported backup format.");
+  return validateRows(value.documents);
+}

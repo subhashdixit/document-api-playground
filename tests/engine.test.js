@@ -49,5 +49,13 @@ test("a substantial supported local collection round trips without dropping reco
   }));
   const text = JSON.stringify({ schema: 1, documents: validateRows(rows) });
   assert.ok(text.length > 1024 * 1024);
-  assert.deepEqual(validateRows(JSON.parse(text).documents), rows);
+  assert.deepEqual(importBackup(text), rows);
+});
+
+import { importBackup } from "../site/engine.js";
+
+test("backup format errors are rejected before replacing state", () => {
+  assert.throws(() => importBackup("null"));
+  assert.throws(() => importBackup('{"schema":2,"documents":[]}'));
+  assert.throws(() => importBackup("x".repeat(16 * 1024 * 1024 + 1)));
 });
