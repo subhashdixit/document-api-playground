@@ -1,5 +1,8 @@
 # Document API Playground
 
+**Reproducible versions:** [Dependency versions and exact setup](DEPENDENCIES.md).
+
+
 [Open the application](https://subhashdixit.github.io/document-api-playground/) · [Report an issue](https://github.com/subhashdixit/document-api-playground/issues)
 
 The original MongoDB API inserted and listed a fixed schema without a maintained frontend. This release adds a complete document-CRUD interface, a clearly labelled local learning mode and an optional protected Flask/PyMongo backend.

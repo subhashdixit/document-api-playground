@@ -7,3 +7,6 @@ node_modules/
 .pylint-cache/
 __pycache__/
 .env
+
+# Install dependencies locally with npm ci; never commit node_modules.
+node_modules/
