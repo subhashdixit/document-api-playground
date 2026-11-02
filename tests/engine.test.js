@@ -41,3 +41,21 @@ test("endpoint permits HTTPS and localhost only without URL credentials", () => 
   ])
     assert.throws(() => endpointURL(u));
 });
+
+test("a substantial supported local collection round trips without dropping records", () => {
+  const rows = Array.from({ length: 500 }, (_, i) => ({
+    id: "record-" + i,
+    document: { description: "x".repeat(3000) },
+  }));
+  const text = JSON.stringify({ schema: 1, documents: validateRows(rows) });
+  assert.ok(text.length > 1024 * 1024);
+  assert.deepEqual(importBackup(text), rows);
+});
+
+import { importBackup } from "../site/engine.js";
+
+test("backup format errors are rejected before replacing state", () => {
+  assert.throws(() => importBackup("null"));
+  assert.throws(() => importBackup('{"schema":2,"documents":[]}'));
+  assert.throws(() => importBackup("x".repeat(16 * 1024 * 1024 + 1)));
+});

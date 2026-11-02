@@ -3,6 +3,7 @@ import {
   validateRows,
   upsert,
   endpointURL,
+  importBackup,
 } from "./engine.js";
 import { $, announce, download } from "./ui.js";
 const KEY = "document-playground.v1";
@@ -118,10 +119,9 @@ $("import").addEventListener("change", async (e) => {
     if (connection)
       throw Error("Disconnect first: backups are local-mode only.");
     const f = e.target.files[0];
-    if (!f || f.size > 1024 * 1024) throw Error("Use a backup up to 1 MiB.");
-    const value = JSON.parse(await f.text());
-    if (value.schema !== 1) throw Error("Unsupported backup format.");
-    const next = validateRows(value.documents);
+    if (!f || f.size > 16 * 1024 * 1024)
+      throw Error("Use a backup up to 16 MiB.");
+    const next = importBackup(await f.text());
     if (window.confirm("Replace local documents with this validated backup?")) {
       persist(next);
       cancel();
